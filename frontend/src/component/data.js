@@ -2,9 +2,9 @@ const data = {
   product: [
     {
       name: 'Nike slim shirt',
-      slug: 'nike slim shirt',
+      slug: 'nike slim shirt1',
       category: 'Shirt',
-      image: '/image/p1.jpg',
+      image: '/image/p1.jpg', //679px x 829px
       price: 1200,
       countInStock: 10,
       brand: 'Nike',
@@ -14,9 +14,9 @@ const data = {
     },
     {
       name: 'Nike slim shirt',
-      slug: 'nike slim shirt',
+      slug: 'nike slim shirt2',
       category: 'Shirt',
-      image: '/image/p1.jpg',
+      image: '/image/p2.jpg',
       price: 1200,
       countInStock: 10,
       brand: 'Nike',
@@ -26,7 +26,7 @@ const data = {
     },
     {
       name: 'Nike slim pant',
-      slug: 'nike slim pant',
+      slug: 'nike slim pant1',
       category: 'pant',
       image: '/image/p3.jpg',
       price: 1100,
@@ -38,7 +38,7 @@ const data = {
     },
     {
       name: 'Nike slim pant',
-      slug: 'nike slim pant',
+      slug: 'nike slim pant2',
       category: 'pant',
       image: '/image/p4.jpg',
       price: 1500,
@@ -50,3 +50,5 @@ const data = {
     },
   ],
 };
+
+export default data;
