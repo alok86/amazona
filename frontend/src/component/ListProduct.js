@@ -4,6 +4,7 @@ import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from './Product';
+import { Helmet } from 'react-helmet-async';
 
 const initialState = {
   loading: false,
@@ -48,6 +49,9 @@ function ListProduct() {
 
   return (
     <main>
+      <Helmet>
+        <title>amazona</title>
+      </Helmet>
       <h1>Feature products</h1>
       <div className="products">
         {loading ? (

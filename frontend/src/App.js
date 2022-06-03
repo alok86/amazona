@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import data from './component/data';
 import ListProduct from './component/ListProduct';
@@ -19,7 +18,7 @@ function App() {
         </Navbar>
       </header>
       <main>
-        <Container>
+        <Container className="mt-3">
           <Routes>
             <Route path="/" element={<ListProduct data={data} />} />
             <Route path="product/:slug" element={<ProductScreen />} />
