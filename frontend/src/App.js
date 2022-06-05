@@ -11,6 +11,7 @@ import { Store } from './component/Store';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/esm/Badge';
 import CartScreen from './component/CartScreen';
+import SigninScreen from './component/SigninScreen';
 function App() {
   const { state } = useContext(Store);
   const { cart } = state;
@@ -40,6 +41,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ListProduct data={data} />} />
             <Route path="/cart" element={<CartScreen />} />
+            <Route path="/signin" element={<SigninScreen />} />
             <Route path="product/:slug" element={<ProductScreen />} />
           </Routes>
         </Container>
