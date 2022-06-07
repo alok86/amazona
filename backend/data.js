@@ -1,9 +1,24 @@
+import bcrypt from 'bcryptjs';
 const data = {
+  users: [
+    {
+      name: 'Alok',
+      email: 'alok@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+    },
+    {
+      name: 'Saumya',
+      email: 'saumya@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
-      _id: 1,
+      //_id: 1,
       name: 'Nike slim shirt',
-      slug: 'nike slim shirt1',
+      slug: 'nike slim shirt',
       category: 'Shirt',
       image: '/image/p1.jpg', //679px x 829px
       price: 1200,
@@ -14,9 +29,9 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: 2,
-      name: 'Nike slim shirt',
-      slug: 'nike slim shirt2',
+      // _id: 2,
+      name: 'Nike fit shirt',
+      slug: 'nike fit shirt',
       category: 'Shirt',
       image: '/image/p2.jpg',
       price: 1200,
@@ -27,9 +42,9 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: 3,
+      //_id: 3,
       name: 'Nike slim pant',
-      slug: 'nike slim pant1',
+      slug: 'nike slim pant',
       category: 'pant',
       image: '/image/p3.jpg',
       price: 1100,
@@ -40,9 +55,9 @@ const data = {
       description: 'high quality pant',
     },
     {
-      _id: 4,
-      name: 'Nike slim pant',
-      slug: 'nike slim pant2',
+      //_id: 4,
+      name: 'mufti slim pant',
+      slug: 'mufti slim pant2',
       category: 'pant',
       image: '/image/p4.jpg',
       price: 1500,
