@@ -20,6 +20,9 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/keys/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || 'SB');
+});
 app.use('/api/seed', seedRouter);
 // test
 // app.get('/api/products', (req, res) => {
