@@ -40,6 +40,16 @@ export default function PaymentMethodScreen() {
           <div className="mb-3">
             <Form.Check
               type="radio"
+              id="RazorPay"
+              label="RazorPay"
+              value="RazorPay"
+              checked={paymentMethodName === 'RazorPay'}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <Form.Check
+              type="radio"
               id="PayPal"
               label="PayPal"
               value="PayPal"

@@ -8,17 +8,20 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { StoreProvider } from './component/Store';
+import { PaymentStateProvider } from './component/StateStore';
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
-      <HelmetProvider>
-        <BrowserRouter>
-          <PayPalScriptProvider deferLoading={true}>
-            <App />
-          </PayPalScriptProvider>
-        </BrowserRouter>
-      </HelmetProvider>
+      <PaymentStateProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <PayPalScriptProvider deferLoading={true}>
+              <App />
+            </PayPalScriptProvider>
+          </BrowserRouter>
+        </HelmetProvider>
+      </PaymentStateProvider>
     </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -23,6 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'SB');
 });
+app.use('/api/keys/razorpay', (req, res) => {
+  res.send(process.env.RAZORPAY_KEY_ID || 'RP');
+});
 app.use('/api/seed', seedRouter);
 // test
 // app.get('/api/products', (req, res) => {
