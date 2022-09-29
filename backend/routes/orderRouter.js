@@ -51,6 +51,11 @@ orderRouter.put(
         update_time: req.body.update_time,
         email_address: req.body.email_address,
       };
+      order.razorpay = {
+        orderId: req.body.razorpayOrderId,
+        paymentId: req.body.razorpayPaymentId,
+        signature: req.body.razorpaySignature,
+      };
       const updatedOrder = await order.save();
       res.send({ message: 'Order Paid', order: updatedOrder });
     } else {

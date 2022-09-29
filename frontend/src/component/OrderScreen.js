@@ -15,6 +15,7 @@ import { getError } from './util';
 //import { toast } from 'react-toastify';
 import { PaymentState } from './StateStore';
 import PayPalBtn from './PayPalBtn';
+import RazorPayBtn from './RazorPayBtn';
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -38,7 +39,7 @@ import PayPalBtn from './PayPalBtn';
 // }
 export default function OrderScreen() {
   const { state } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, paymentMethod } = state;
 
   const params = useParams();
   const { id: orderId } = params;
@@ -257,7 +258,12 @@ export default function OrderScreen() {
                 )}*/}
                 <ListGroup.Item>
                   <div>
-                    <PayPalBtn />
+                    {/* {paymentMethod !== 'RazorPay' ? (
+                      <PayPalBtn />
+                    ) : (
+                      <RazorPayBtn />
+                    )} */}
+                    <RazorPayBtn orderId={orderId} />
                   </div>
                 </ListGroup.Item>
               </ListGroup>

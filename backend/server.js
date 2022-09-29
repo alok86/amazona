@@ -7,6 +7,7 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import dataRouter from './routes/dataRouter.js';
 import orderRouter from './routes/orderRouter.js';
+import Razorpay from 'razorpay';
 
 dotenv.config();
 mongoose
@@ -24,8 +25,28 @@ app.use('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'SB');
 });
 app.use('/api/keys/razorpay', (req, res) => {
-  res.send(process.env.RAZORPAY_KEY_ID || 'RP');
+  res.send(process.env.RAZORPAY_KEY_ID);
 });
+
+app.post('/api/create-order', async (req, res) => {
+  try {
+    const instance = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.KEY_SECRET,
+    });
+    // console.log(req.body.amount);
+    const options = {
+      amount: req.body.amount,
+      currency: 'INR',
+    };
+    const order = await instance.orders.create(options);
+    if (!order) return res.status(500).send('Some error occured');
+    res.send(order);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.use('/api/seed', seedRouter);
 // test
 // app.get('/api/products', (req, res) => {
