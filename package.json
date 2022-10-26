@@ -1,6 +1,9 @@
 {
   "name": "amazona",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "this the project where various module regading ecommerce web site is placed",
   "main": "index.js",
   "scripts": {
