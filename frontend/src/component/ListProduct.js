@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from './Product';
@@ -29,10 +28,7 @@ const reducer = (state, action) => {
 };
 
 function ListProduct() {
-  const [{ loading, error, products }, dispatch] = useReducer(
-    logger(reducer),
-    initialState
-  );
+  const [{ loading, error, products }, dispatch] = useReducer(initialState);
 
   //const [products, setProducts] = useState([]);
   useEffect(() => {
