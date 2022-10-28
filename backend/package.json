@@ -13,12 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.5",
-    "nodemon": "^2.0.16",
-    "razorpay": "^2.8.2"
+    "mongoose": "^6.7.0",
+    "nodemon": "^2.0.20",
+    "razorpay": "^2.8.3"
   }
 }
