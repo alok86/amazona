@@ -10,8 +10,8 @@ import { getError } from './util';
 
 const initialState = {
   loading: false,
-  products: [],
   error: '',
+  products: [],
 };
 
 const reducer = (state, action) => {
@@ -28,7 +28,10 @@ const reducer = (state, action) => {
 };
 
 function ListProduct() {
-  const [{ loading, error, products }, dispatch] = useReducer(initialState);
+  const [{ loading, error, products }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   //const [products, setProducts] = useState([]);
   useEffect(() => {
