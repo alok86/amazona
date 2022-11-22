@@ -30,10 +30,17 @@ import SearchScreen from './component/SearchScreen';
 import AdminRoute from './component/AdminRoute';
 import DashboardScreen from './component/DashboardScreen';
 import ProtectedRoute from './component/ProtectedRoute';
+import ProductListScreen from './component/ProductListScreen';
+import ProductEditScreen from './component/ProductEditScreen';
+import OrderListScreen from './component/OrderListScreen';
+import UserListScreen from './component/UserListScreen';
+import UserEditScreen from './component/UserEditScreen';
+import MapScreen from './component/MapScreen';
+import ErrorBoundary from './component/ErrorBoundary';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
+  const { fullBox, cart, userInfo } = state;
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
@@ -67,8 +74,14 @@ function App() {
     <div
       className={
         sidebarIsOpen
-          ? 'd-flex flex-column site-container active-cont'
-          : 'd-flex flex-column site-container'
+          ? // ? 'd-flex flex-column site-container active-cont'
+            // : 'd-flex flex-column site-container'
+            fullBox
+            ? 'site-container active-cont d-flex flex-column full-box'
+            : 'site-container active-cont d-flex flex-column'
+          : fullBox
+          ? 'site-container d-flex flex-column full-box'
+          : 'site-container d-flex flex-column'
       }
     >
       <ToastContainer position="bottom-center" limit={1} />
@@ -124,13 +137,13 @@ function App() {
                     <LinkContainer to="/admin/dashboard">
                       <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/productlist">
+                    <LinkContainer to="/admin/products">
                       <NavDropdown.Item>Products</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/orderlist">
+                    <LinkContainer to="/admin/orders">
                       <NavDropdown.Item>Orders</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to="/admin/userlist">
+                    <LinkContainer to="/admin/users">
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
@@ -168,6 +181,14 @@ function App() {
           <Routes>
             <Route path="/" element={<ListProduct data={data} />} />
             <Route path="/payment" element={<PaymentMethodScreen />}></Route>
+            <Route
+              path="/map"
+              element={
+                <ProtectedRoute>
+                  <MapScreen />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route
               path="/order/:id"
@@ -190,7 +211,14 @@ function App() {
               }
             />
             <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
-            <Route path="product/:slug" element={<ProductScreen />} />
+            <Route
+              path="product/:slug"
+              element={
+                <ErrorBoundary>
+                  <ProductScreen />
+                </ErrorBoundary>
+              }
+            />
             <Route
               path="/orderhistory"
               element={
@@ -199,12 +227,53 @@ function App() {
                 </ProtectedRoute>
               }
             ></Route>
+            <Route
+              path="/admin/products"
+              element={
+                <AdminRoute>
+                  <ProductListScreen />
+                </AdminRoute>
+              }
+            ></Route>
             {/* Admin Routes */}
+
             <Route
               path="/admin/dashboard"
               element={
                 <AdminRoute>
                   <DashboardScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/users"
+              element={
+                <AdminRoute>
+                  <UserListScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/user/:id"
+              element={
+                <AdminRoute>
+                  <UserEditScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/product/:id"
+              element={
+                <AdminRoute>
+                  <ProductEditScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/orders"
+              element={
+                <AdminRoute>
+                  <OrderListScreen />
                 </AdminRoute>
               }
             ></Route>

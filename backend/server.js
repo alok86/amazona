@@ -9,6 +9,7 @@ import userRouter from './routes/userRoutes.js';
 import dataRouter from './routes/dataRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import Razorpay from 'razorpay';
+import uploadRouter from './routes/uploadRoutes.js';
 
 dotenv.config();
 mongoose
@@ -20,10 +21,14 @@ mongoose
     console.log(err.message);
   });
 const app = express();
+app.use('/api/upload', uploadRouter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'SB');
+});
+app.get('/api/keys/google', (req, res) => {
+  res.send({ key: process.env.GOOGLE_API_KEY || '' });
 });
 app.use('/api/keys/razorpay', (req, res) => {
   res.send(process.env.RAZORPAY_KEY_ID);
