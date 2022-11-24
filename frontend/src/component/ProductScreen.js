@@ -72,9 +72,10 @@ function ProductScreen() {
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
       }
-
+      //console.log(product);
       // setProducts(result.data);
     };
+
     fetchData();
   }, [slug]);
 
@@ -194,19 +195,30 @@ function ProductScreen() {
       <div className="my-3">
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className="mb-3">
-          {product.reviews.length === 0 && (
+          {product.numReviews === 0 && (
             <MessageBox>There is no review</MessageBox>
           )}
+          {
+            // product.reviews ? (
+            //   <MessageBox>There is no review</MessageBox>
+            // ) : (
+            //   <MessageBox>There is a review</MessageBox>
+            // )
+          }
         </div>
         <ListGroup>
-          {product.reviews.map((review) => (
-            <ListGroup.Item key={review._id}>
-              <strong>{review.name}</strong>
-              <Rating rating={review.rating} caption=" "></Rating>
-              <p>{review.createdAt.substring(0, 10)}</p>
-              <p>{review.comment}</p>
-            </ListGroup.Item>
-          ))}
+          {product.numReviews > 0 ? (
+            product.reviews.map((review) => (
+              <ListGroup.Item key={review._id}>
+                <strong>{review.name}</strong>
+                <Rating rating={review.rating} caption=" "></Rating>
+                <p>{review.createdAt.substring(0, 10)}</p>
+                <p>{review.comment}</p>
+              </ListGroup.Item>
+            ))
+          ) : (
+            <MessageBox>There is no review</MessageBox>
+          )}
         </ListGroup>
         <div className="my-3">
           {userInfo ? (
